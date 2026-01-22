@@ -1,2 +1,9 @@
+*.pem
+*.key
 .htpasswd
 .env
+ansible/inventory/hosts
+ansible/group_vars/all/vars.yml
+ansible/nginx_conf.yml
+!ansible/inventory/hosts.example
+!ansible/group_vars/all/vars.example

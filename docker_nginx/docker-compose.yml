@@ -1,0 +1,22 @@
+version: "3"                # версия формата данных 
+services:                   
+  nginx:
+    build: .
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+    ports: 
+      - "80:80"
+      - "443:443"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ${HTPASSWD_HOST}:/etc/nginx/.htpasswd:ro
+      - ${LETSENCRYPT_DIR}:/etc/letsencrypt:ro
+      - ${CONF_SITE_HOST}:/etc/nginx/conf.d/site.conf:ro
+#      - ./site/html:/usr/share/nginx/html:ro
+
