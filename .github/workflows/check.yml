@@ -14,5 +14,5 @@ jobs:
 
             - name: TestDocker
               run: |
-                cd docker-nginx-reverse-proxy/docker_nginx/
-                Docker build .
+                cd /docker_nginx/
+                docker build .
