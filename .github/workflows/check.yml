@@ -14,5 +14,8 @@ jobs:
 
             - name: TestDocker
               run: |
+                pwd
+                ls -la
                 cd /docker_nginx/
+                ls -la
                 docker build .
