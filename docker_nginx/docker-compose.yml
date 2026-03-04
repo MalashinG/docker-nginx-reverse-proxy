@@ -3,6 +3,12 @@ services:
   nginx:
     build: .
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 32M
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost/ || exit 1"]
       interval: 30s
@@ -15,8 +21,8 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - ${HTPASSWD_HOST}:/etc/nginx/.htpasswd:ro
       - ${LETSENCRYPT_DIR}:/etc/letsencrypt:ro
       - ${CONF_SITE_HOST}:/etc/nginx/conf.d/site.conf:ro
-#      - ./site/html:/usr/share/nginx/html:ro
+      - ./site/html:/usr/share/nginx/html:ro
+      - ./logs/nginx:/var/log/nginx
 
