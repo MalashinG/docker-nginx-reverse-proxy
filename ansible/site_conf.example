@@ -1,0 +1,16 @@
+- name: Deploy nginx site config for dockerized nginx
+  hosts: web
+  become: true
+
+  tasks:
+    - name: Ensure target directory exists
+      file:
+        path: /path/to/folder_project
+        state: directory
+        mode: "0755"
+
+    - name: Deploy site.conf from template
+      template:
+        src: site.conf.j2
+        dest: /path/to/folder_project/site.conf
+        mode: "0644"
