@@ -7,3 +7,8 @@ ansible/group_vars/all/vars.yml
 ansible/nginx_conf.yml
 !ansible/inventory/hosts.example
 !ansible/group_vars/all/vars.example
+site
+nginx/site.local.conf
+nginx/site.conf
+docker-compose-local.yml
+logs
